@@ -1,0 +1,327 @@
+/* =====================================================
+   MIT-WPU Campus Events — design system
+   Inspired by campus noticeboards + physical event tickets,
+   not a generic SaaS dashboard. Palette pulls from MIT-WPU's
+   own brand colors (maroon, marigold orange, cyan-teal).
+   ===================================================== */
+
+:root {
+  --paper: #F5EEDD;
+  --card: #FFFBF1;
+  --ink: #2B2620;
+  --ink-soft: #6B6152;
+  --maroon: #6E1E2A;
+  --maroon-dark: #4A1420;
+  --marigold: #DD8A1E;
+  --marigold-dark: #A86710;
+  --teal: #1F6F5C;
+  --sand: #DDCBA0;
+  --sand-dark: #C4B183;
+  --danger: #A32D2D;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  background-image: radial-gradient(var(--sand) 0.7px, transparent 0.7px);
+  background-size: 15px 15px;
+  color: var(--ink);
+  font-family: 'IBM Plex Sans', 'Segoe UI', sans-serif;
+  line-height: 1.6;
+}
+
+/* ---------- header: noticeboard plaque, not a navbar ---------- */
+.site-header {
+  background: var(--maroon);
+  border-bottom: 4px solid var(--marigold);
+  padding: 30px 40px 24px;
+}
+.site-header .crest-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.site-header h1 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 600;
+  font-size: 30px;
+  color: var(--paper);
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+.site-header .tagline {
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #E7C79A;
+}
+
+/* ---------- section label ---------- */
+.section-label {
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--maroon);
+  border-bottom: 1px solid var(--sand-dark);
+  padding-bottom: 8px;
+  margin: 40px auto 22px;
+  max-width: 1100px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+/* ---------- event grid ---------- */
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+  gap: 26px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 40px 50px;
+}
+
+/* ---------- ticket card: the signature element ---------- */
+.ticket {
+  display: flex;
+  background: var(--card);
+  border: 1px solid var(--sand-dark);
+  box-shadow: 4px 4px 0 var(--sand-dark);
+}
+.ticket-main {
+  flex: 1;
+  padding: 20px 18px;
+  min-width: 0;
+}
+.ticket-stub {
+  width: 68px;
+  flex-shrink: 0;
+  background: var(--maroon);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-left: 2px dashed var(--paper);
+}
+.ticket-stub span {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--paper);
+}
+/* perforation notches, like a torn ticket edge */
+.ticket-stub::before,
+.ticket-stub::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background: var(--paper);
+  border-radius: 50%;
+  left: -7px;
+}
+.ticket-stub::before { top: -7px; }
+.ticket-stub::after { bottom: -7px; }
+
+.club-tag {
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--teal);
+}
+.ticket-main h3 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 21px;
+  font-weight: 600;
+  margin: 6px 0 10px;
+  color: var(--maroon-dark);
+  line-height: 1.25;
+}
+.meta {
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  margin-bottom: 3px;
+}
+.status-tag {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 3px 10px;
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border: 1px solid currentColor;
+}
+.status-open { color: var(--teal); }
+.status-full { color: var(--danger); }
+
+/* ---------- buttons ---------- */
+.btn {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 9px 18px;
+  background: var(--marigold);
+  color: var(--maroon-dark);
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  font-size: 12.5px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  border: 1px solid var(--marigold-dark);
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 2px 2px 0 var(--marigold-dark);
+}
+.btn.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* ---------- registration form ---------- */
+.form-card {
+  max-width: 480px;
+  margin: 44px auto;
+  background: var(--card);
+  border: 1px solid var(--sand-dark);
+  padding: 32px;
+  box-shadow: 5px 5px 0 var(--sand-dark);
+}
+.form-card h3 {
+  font-family: 'Fraunces', Georgia, serif;
+  color: var(--maroon-dark);
+  margin-top: 0;
+  font-size: 22px;
+}
+label {
+  display: block;
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--maroon);
+  margin: 16px 0 6px;
+}
+input, select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--sand-dark);
+  background: var(--paper);
+  font-family: 'IBM Plex Sans', 'Segoe UI', sans-serif;
+  font-size: 14px;
+  color: var(--ink);
+}
+input:focus, select:focus {
+  outline: 2px solid var(--teal);
+  outline-offset: 1px;
+  border-color: var(--teal);
+}
+input::placeholder {
+  color: var(--ink-soft);
+  opacity: 1;
+}
+.success-banner {
+  background: var(--teal);
+  color: #EAF3EE;
+  padding: 14px 18px;
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+.error-banner {
+  background: var(--danger);
+  color: #FBEAEA;
+  padding: 14px 18px;
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+/* ---------- admin demo page: procedure/function results + DCL grants ---------- */
+table.admin-table {
+  border-collapse: collapse;
+  width: 100%;
+  background: var(--card);
+}
+table.admin-table th, table.admin-table td {
+  border: 1px solid var(--sand-dark);
+  padding: 10px 14px;
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  font-size: 13px;
+  text-align: left;
+}
+table.admin-table th {
+  background: var(--maroon);
+  color: var(--paper);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 11px;
+}
+.grants-box {
+  max-width: 1100px;
+  margin: 0 auto 50px;
+  padding: 0 40px;
+}
+.grants-box pre {
+  background: var(--card);
+  border: 1px solid var(--sand-dark);
+  padding: 16px 20px;
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  font-size: 12.5px;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* ---------- additions for the fixed version ---------- */
+.site-header .tagline a { color: #E7C79A; }
+.site-header .tagline a:hover { color: var(--paper); }
+.empty-note { padding: 0 0 40px; color: var(--ink-soft); }
+
+/* cancelled / completed events: faded ticket, grey stub */
+.ticket-closed { opacity: 0.6; }
+.ticket-closed .ticket-stub { background: var(--ink-soft); }
+
+.text-link {
+  display: block;
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--maroon);
+}
+.form-card .btn { margin-top: 22px; }
+.btn-danger {
+  background: var(--danger);
+  border-color: var(--maroon-dark);
+  color: #FBEAEA;
+}
+.btn-danger:hover { box-shadow: 2px 2px 0 var(--maroon-dark); }
+.btn-small { margin-top: 0; padding: 5px 10px; font-size: 11px; }
+.inline-form { margin: 0; }
+
+.admin-wrap {
+  max-width: 1100px;
+  margin: 0 auto 40px;
+  padding: 0 40px;
+}
+.table-scroll { overflow-x: auto; }
+
+@media (max-width: 480px) {
+  .site-header { padding: 24px 20px 20px; }
+  .section-label, .events-grid, .admin-wrap, .grants-box { padding-left: 20px; padding-right: 20px; }
+  .form-card { margin: 24px 16px; padding: 22px; }
+}
